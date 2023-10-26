@@ -1,0 +1,444 @@
+{
+	"info": {
+		"_postman_id": "23d2443f-23e1-49c1-ab59-5f3b29fb87a5",
+		"name": "Events API - testcontainers .NET demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21239479",
+		"_collection_link": "https://www.postman.com/avronnet/workspace/javacro2023/collection/21239479-23d2443f-23e1-49c1-ab59-5f3b29fb87a5?action=share&source=collection_link&creator=21239479"
+	},
+	"item": [
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "by ID",
+					"item": [
+						{
+							"name": "Get Event",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/Events/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Events",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "text/plain"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/Events/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Events",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<long>\",\n  \"createdAt\": \"<dateTime>\",\n  \"lastModifiedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"logoUrl\": \"<string>\",\n  \"websiteUrl\": \"<string>\",\n  \"organizerName\": \"<string>\",\n  \"venueName\": \"<string>\",\n  \"venueCity\": \"<string>\",\n  \"venueAddress\": \"<string>\",\n  \"venueMapsUrl\": \"<string>\",\n  \"venueAdditionalDetails\": \"<string>\",\n  \"eventStartDateTime\": \"<dateTime>\",\n  \"eventEndDateTime\": \"<dateTime>\",\n  \"registrationDeadline\": \"<dateTime>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Update Event",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"<long>\",\n  \"createdAt\": \"<dateTime>\",\n  \"lastModifiedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"logoUrl\": \"<string>\",\n  \"websiteUrl\": \"<string>\",\n  \"organizerName\": \"<string>\",\n  \"venueName\": \"<string>\",\n  \"venueCity\": \"<string>\",\n  \"venueAddress\": \"<string>\",\n  \"venueMapsUrl\": \"<string>\",\n  \"venueAdditionalDetails\": \"<string>\",\n  \"eventStartDateTime\": \"<dateTime>\",\n  \"eventEndDateTime\": \"<dateTime>\",\n  \"registrationDeadline\": \"<dateTime>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/Events/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Events",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "text/plain"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<long>\",\n  \"createdAt\": \"<dateTime>\",\n  \"lastModifiedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"logoUrl\": \"<string>\",\n  \"websiteUrl\": \"<string>\",\n  \"organizerName\": \"<string>\",\n  \"venueName\": \"<string>\",\n  \"venueCity\": \"<string>\",\n  \"venueAddress\": \"<string>\",\n  \"venueMapsUrl\": \"<string>\",\n  \"venueAdditionalDetails\": \"<string>\",\n  \"eventStartDateTime\": \"<dateTime>\",\n  \"eventEndDateTime\": \"<dateTime>\",\n  \"registrationDeadline\": \"<dateTime>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Events/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Events",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<long>\",\n  \"createdAt\": \"<dateTime>\",\n  \"lastModifiedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"logoUrl\": \"<string>\",\n  \"websiteUrl\": \"<string>\",\n  \"organizerName\": \"<string>\",\n  \"venueName\": \"<string>\",\n  \"venueCity\": \"<string>\",\n  \"venueAddress\": \"<string>\",\n  \"venueMapsUrl\": \"<string>\",\n  \"venueAdditionalDetails\": \"<string>\",\n  \"eventStartDateTime\": \"<dateTime>\",\n  \"eventEndDateTime\": \"<dateTime>\",\n  \"registrationDeadline\": \"<dateTime>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete Event",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/Events/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Events",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Events/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Events",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "List Events",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/Events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Events"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/Events",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Events"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": \"<long>\",\n    \"createdAt\": \"<dateTime>\",\n    \"lastModifiedAt\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"logoUrl\": \"<string>\",\n    \"websiteUrl\": \"<string>\",\n    \"organizerName\": \"<string>\",\n    \"venueName\": \"<string>\",\n    \"venueCity\": \"<string>\",\n    \"venueAddress\": \"<string>\",\n    \"venueMapsUrl\": \"<string>\",\n    \"venueAdditionalDetails\": \"<string>\",\n    \"eventStartDateTime\": \"<dateTime>\",\n    \"eventEndDateTime\": \"<dateTime>\",\n    \"registrationDeadline\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"createdAt\": \"<dateTime>\",\n    \"lastModifiedAt\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"logoUrl\": \"<string>\",\n    \"websiteUrl\": \"<string>\",\n    \"organizerName\": \"<string>\",\n    \"venueName\": \"<string>\",\n    \"venueCity\": \"<string>\",\n    \"venueAddress\": \"<string>\",\n    \"venueMapsUrl\": \"<string>\",\n    \"venueAdditionalDetails\": \"<string>\",\n    \"eventStartDateTime\": \"<dateTime>\",\n    \"eventEndDateTime\": \"<dateTime>\",\n    \"registrationDeadline\": \"<dateTime>\"\n  }\n]"
+						}
+					]
+				},
+				{
+					"name": "Create Event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"<long>\",\n  \"createdAt\": \"<dateTime>\",\n  \"lastModifiedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"logoUrl\": \"<string>\",\n  \"websiteUrl\": \"<string>\",\n  \"organizerName\": \"<string>\",\n  \"venueName\": \"<string>\",\n  \"venueCity\": \"<string>\",\n  \"venueAddress\": \"<string>\",\n  \"venueMapsUrl\": \"<string>\",\n  \"venueAdditionalDetails\": \"<string>\",\n  \"eventStartDateTime\": \"<dateTime>\",\n  \"eventEndDateTime\": \"<dateTime>\",\n  \"registrationDeadline\": \"<dateTime>\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/Events",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Events"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"<long>\",\n  \"createdAt\": \"<dateTime>\",\n  \"lastModifiedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"logoUrl\": \"<string>\",\n  \"websiteUrl\": \"<string>\",\n  \"organizerName\": \"<string>\",\n  \"venueName\": \"<string>\",\n  \"venueCity\": \"<string>\",\n  \"venueAddress\": \"<string>\",\n  \"venueMapsUrl\": \"<string>\",\n  \"venueAdditionalDetails\": \"<string>\",\n  \"eventStartDateTime\": \"<dateTime>\",\n  \"eventEndDateTime\": \"<dateTime>\",\n  \"registrationDeadline\": \"<dateTime>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/Events",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Events"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": \"<long>\",\n  \"createdAt\": \"<dateTime>\",\n  \"lastModifiedAt\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"logoUrl\": \"<string>\",\n  \"websiteUrl\": \"<string>\",\n  \"organizerName\": \"<string>\",\n  \"venueName\": \"<string>\",\n  \"venueCity\": \"<string>\",\n  \"venueAddress\": \"<string>\",\n  \"venueMapsUrl\": \"<string>\",\n  \"venueAdditionalDetails\": \"<string>\",\n  \"eventStartDateTime\": \"<dateTime>\",\n  \"eventEndDateTime\": \"<dateTime>\",\n  \"registrationDeadline\": \"<dateTime>\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Echo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "test",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7106/echo",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7106",
+					"path": [
+						"echo"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://localhost:7106",
+			"type": "string"
+		}
+	]
+}
