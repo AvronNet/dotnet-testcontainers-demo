@@ -1,0 +1,10 @@
+{
+    "name": "dotnet-testcontainers-demo",
+    "version": "1.0.0",
+    "scripts": {
+        "start-local": "dotnet run --project src/Events.API --launch-profile \"https\"",
+        "start-docker": "dotnet run --project src/Events.API --launch-profile \"DockerDepsHttps\"",
+        "start-tc": "dotnet run --project src/Events.API --launch-profile \"LocalHttps\"",
+        "test": "dotnet test"
+    }
+}

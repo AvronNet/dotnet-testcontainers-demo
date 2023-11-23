@@ -68,5 +68,14 @@ namespace Events.Api.IntegrationTests.LocalDB
             var response = await _client.PostAsJsonAsync("/api/events", eventContent);
             response.EnsureSuccessStatusCode();
         }
+
+        //[Fact]
+        [Fact(Skip = "Not needed")]
+        public async Task DeleteEventByAliasTest()
+        {
+            var alias = "Test Event";
+            var response = await _client.DeleteAsync($"/api/events/alias/{alias}");
+            response.EnsureSuccessStatusCode();
+        }
     }
 }

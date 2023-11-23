@@ -2,20 +2,27 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Testcontainers.MsSql;
+using Testcontainers.Redis;
 
 namespace Events.Api.IntegrationTests.Infrastructure
 {
     public class IntegrationTestFactory<TProgram, TDbContext> : WebApplicationFactory<TProgram>, IAsyncLifetime
     where TProgram : class where TDbContext : DbContext
     {
-        private readonly MsSqlContainer _container;
+        private readonly MsSqlContainer _msSqlContainer;
+        private readonly RedisContainer _redisContainer;
 
         public IntegrationTestFactory()
         {
-            _container = new MsSqlBuilder()
+            _msSqlContainer = new MsSqlBuilder()
+                .WithCleanUp(true)
+                .Build();
+            _redisContainer = new RedisBuilder()
+                .WithImage("redis:7.0")
                 .WithCleanUp(true)
                 .Build();
         }
@@ -29,12 +36,16 @@ namespace Events.Api.IntegrationTests.Infrastructure
         {
             services.RemoveDbContext<TDbContext>();
             services.AddDbContext<TDbContext>(
-                options => { options.UseSqlServer(_container.GetConnectionString()); },
+                options => { options.UseSqlServer(_msSqlContainer.GetConnectionString()); },
                 ServiceLifetime.Transient);
             services.EnsureDbCreated<TDbContext>();
 
-            // Creator repositories
-            // services.AddScoped<IEventsCreatorRepository, EventsCreatorRepository>();
+            var redisService = services.FirstOrDefault(d => d.ServiceType == typeof(IDistributedCache));
+            if (redisService != null) { services.Remove(redisService); }
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = _redisContainer.GetConnectionString();
+            });
 
             var sp = services.BuildServiceProvider();
 
@@ -58,8 +69,15 @@ namespace Events.Api.IntegrationTests.Infrastructure
 
         }
 
-        public async Task InitializeAsync() => await _container.StartAsync();
+        public async Task InitializeAsync() {
+            await _msSqlContainer.StartAsync();
+            await _redisContainer.StartAsync();
+    }
 
-        public new async Task DisposeAsync() => await _container.DisposeAsync();
+        public new async Task DisposeAsync()
+        {
+            await _msSqlContainer.DisposeAsync();
+            await _redisContainer.DisposeAsync();
+        }
     }
 }

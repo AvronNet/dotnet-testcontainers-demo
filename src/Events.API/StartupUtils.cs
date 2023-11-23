@@ -1,8 +1,8 @@
 ﻿using DotNet.Testcontainers.Builders;
-using DotNet.Testcontainers.Containers;
 using Events.Infrastructure.DB.Context;
 using Microsoft.EntityFrameworkCore;
 using Testcontainers.MsSql;
+using Testcontainers.Redis;
 
 namespace Events.Api
 {
@@ -38,8 +38,9 @@ namespace Events.Api
             if (env == "Local")
             {
                 // Setup testcontainers
+                // MSSQL Database
                 var mssqlContainer = new MsSqlBuilder()
-                    .WithWaitStrategy(Wait.ForUnixContainer())
+                    .WithWaitStrategy(Wait.ForWindowsContainer())
                     .WithCleanUp(true)
                     .Build();
 
@@ -51,8 +52,19 @@ namespace Events.Api
                     Thread.Sleep(waitMilis);
                 }
 
-                System.Diagnostics.Debug.WriteLine("Testcontainer connection string: " + mssqlContainer.GetConnectionString());
+                System.Diagnostics.Debug.WriteLine("Testcontainer MSSQL connection string: " + mssqlContainer.GetConnectionString());
                 Environment.SetEnvironmentVariable("ConnectionStrings__DefaultConnection", mssqlContainer.GetConnectionString());
+
+                // Redis
+                var redisContainer = new RedisBuilder()
+                    .WithWaitStrategy(Wait.ForUnixContainer())
+                    .WithCleanUp(true)
+                    .Build();
+
+                redisContainer.StartAsync().Wait();
+
+                System.Diagnostics.Debug.WriteLine("Testcontainer Redis connection string: " + redisContainer.GetConnectionString());
+                Environment.SetEnvironmentVariable("ConnectionStrings__RedisUrl", redisContainer.GetConnectionString());
             }
 
             #endregion

@@ -63,5 +63,12 @@ namespace Events.Api.Controllers
         {
             await _eventService.DeleteEventAsync(id);
         }
+
+        // DELETE api/<EventsController>/alias/some-alias
+        [HttpDelete("alias/{alias}")]
+        public async Task DeleteByAlias(string alias)
+        {
+            await _eventService.DeleteEventByAliasAsync(alias);
+        }
     }
 }

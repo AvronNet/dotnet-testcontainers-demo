@@ -22,7 +22,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add DB context
-builder.Services.AddDbContext<EventsDBContext>(options => options.UseSqlServer(connectionString, b => b.MigrationsAssembly("Events.Infrastructure")));
+builder.Services.AddDbContext<EventsDBContext>(options => options.UseSqlServer(connectionString, b =>
+{
+    b.MigrationsAssembly("Events.Infrastructure");
+    b.EnableRetryOnFailure();
+}));
+
+// Add Redis
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("RedisUrl");
+});
 
 builder.Services.AddAutoMapper(typeof(EntityMapperProfile).Assembly);
 

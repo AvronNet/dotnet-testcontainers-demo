@@ -2,6 +2,8 @@
 using Events.Core.Events.Model;
 using Events.Infrastructure.DB.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net.Http.Json;
@@ -25,6 +27,8 @@ namespace Events.Api.IntegrationTests.Testcontainers
             var configuration = _factory.Services.GetRequiredService<IConfiguration>();
             var dbConnectionString = configuration.GetConnectionString("DefaultConnection");
             _output.WriteLine($"dbConnectionString: {dbConnectionString}");
+            var redisUrl = configuration.GetConnectionString("RedisUrl");
+            _output.WriteLine($"Redis URL: {redisUrl}");
 
             using (var scope = _factory.Services.CreateScope())
             {
@@ -64,6 +68,30 @@ namespace Events.Api.IntegrationTests.Testcontainers
                 RegistrationDeadline = DateTime.Now.AddHours(1)
             };
             var response = await _client.PostAsJsonAsync("/api/events", eventContent);
+            response.EnsureSuccessStatusCode();
+        }
+
+        [Fact]
+        public async Task CreateEventDraft()
+        {
+            var eventContent = new Event
+            {
+                Name = "Test Event",
+                Alias = "Test Event",
+                Description = "Test Event Description",
+                LogoUrl = "Test Logo Url",
+                WebsiteUrl = "Test Website Url",
+                OrganizerName = "Test Organizer Name",
+                VenueName = "Test Venue",
+                VenueAddress = "Test Address",
+                VenueCity = "Test City",
+                VenueMapsUrl = "Test Maps Url",
+                VenueAdditionalDetails = "Test Additional Details",
+                EventStartDateTime = DateTime.Now,
+                EventEndDateTime = DateTime.Now.AddDays(1),
+                RegistrationDeadline = DateTime.Now.AddHours(1)
+            };
+            var response = await _client.PostAsJsonAsync("/api/drafts", eventContent);
             response.EnsureSuccessStatusCode();
         }
     }

@@ -14,5 +14,6 @@ namespace Events.Core.Events
         Task<Event> AddEventAsync(Event eventToAdd);
         Task<Event> UpdateEventAsync(long id, Event eventToUpdate);
         Task DeleteEventAsync(long id);
+        Task DeleteEventByAliasAsync(string alias);
     }
 }

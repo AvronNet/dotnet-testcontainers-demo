@@ -37,6 +37,18 @@ namespace Events.Infrastructure.DB.Repositories
             await _eventsDBContext.SaveChangesAsync();
         }
 
+        public async Task DeleteEventByAliasAsync(string alias)
+        {
+            var eventToDelete = await _eventsDBContext.Events.FirstOrDefaultAsync(e => e.Alias == alias);
+            // add check if event exists
+            if (eventToDelete == null)
+            {
+                return;
+            }
+            _eventsDBContext.Events.Remove(eventToDelete);
+            await _eventsDBContext.SaveChangesAsync();
+        }
+
         public async Task<Event> GetEventByIdAsync(long id)
         {
             var eventEntity = await _eventsDBContext.Events.FindAsync(id);

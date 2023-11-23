@@ -1,6 +1,6 @@
 # Events Demo application
 
-This .NET applicaiton showcases Clean Architecture, Event Sourcing patterns and Integration testing using testcontainers. 
+This .NET applicaiton showcases Clean Architecture and Integration testing using testcontainers. 
 It is a simple application that allows users to create and edit events.
 
 ## Prerequisites

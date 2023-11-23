@@ -48,5 +48,10 @@ namespace Events.Core.Events
         {
             await _eventsRepository.DeleteEventAsync(id);
         }
+
+        public async Task DeleteEventByAliasAsync(string alias)
+        {
+            await _eventsRepository.DeleteEventByAliasAsync(alias);
+        }
     }
 }

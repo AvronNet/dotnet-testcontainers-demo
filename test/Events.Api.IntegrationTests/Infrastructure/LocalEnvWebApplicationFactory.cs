@@ -11,7 +11,6 @@ namespace Events.Api.IntegrationTests.Infrastructure
             // Set Docker environment
             builder.UseEnvironment("Local");
             Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Local");
-            Environment.SetEnvironmentVariable("IT_TESTCONTAINER_WAIT_TIME", "3000");
         }
     }
 }
